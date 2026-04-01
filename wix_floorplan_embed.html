@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'DM Sans', sans-serif; background: transparent; }
+.fpz { transition: opacity .2s; opacity: .55; cursor: pointer; }
+.fpz.fpz-active { opacity: 1; }
+.fpz:hover { opacity: .8; }
+.fp-svg { width: 100%; display: block; border-radius: 4px; border: 1px solid #E8E8E8; }
+.fp-panel {
+  margin-top: 2px; border: 1px solid #E8500A;
+  border-radius: 4px; overflow: hidden;
+  max-height: 0; transition: max-height .35s ease;
+  background: #fff;
+}
+.fp-panel.open { max-height: 160px; }
+.fp-panel-inner {
+  padding: 18px 22px;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 4px 18px; align-items: start;
+}
+.fp-tag { font-size: 10px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: #E8500A; margin: 0; white-space: nowrap; padding-top: 3px; }
+.fp-title { font-size: 14px; font-weight: 600; color: #111; margin: 0 0 4px; }
+.fp-desc  { font-size: 13px; color: #777; margin: 0 0 5px; line-height: 1.6; }
+.fp-shift { font-size: 12px; font-weight: 600; color: #E8500A; margin: 0; }
+.fp-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 12px; padding: 9px 18px;
+  border: 1px solid #E8500A; border-radius: 3px;
+  font-size: 13px; font-weight: 500; color: #E8500A;
+  text-decoration: none; cursor: pointer;
+  background: transparent; transition: all .15s; font-family: inherit;
+}
+.fp-cta:hover { background: #E8500A; color: white; }
+.fp-hint { font-size: 11px; color: #BBB; margin-top: 8px; font-style: italic; }
+</style>
+</head>
+<body>
+
+<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" class="fp-svg">
+  <defs>
+    <pattern id="fpg" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="#C8C4B8" stroke-width=".4"/>
+    </pattern>
+  </defs>
+  <rect width="720" height="480" fill="#F5F1EA"/>
+  <rect width="720" height="480" fill="url(#fpg)"/>
+  <rect x="40" y="30" width="640" height="420" rx="2" fill="none" stroke="#1C2B3A" stroke-width="6"/>
+
+  <g class="fpz" id="fpz-B" onclick="fpSel('B')">
+    <rect x="43" y="33" width="255" height="280" fill="#EDE8DC"/>
+    <text x="56" y="270" font-size="8" font-weight="600" letter-spacing=".12em" fill="#1C2B3A" opacity=".4" font-family="sans-serif">FOCUS ZONE</text>
+    <ellipse cx="130" cy="110" rx="40" ry="28" fill="#C9A96E" opacity=".55"/>
+    <ellipse cx="210" cy="160" rx="32" ry="24" fill="#C9A96E" opacity=".5"/>
+    <ellipse cx="110" cy="195" rx="24" ry="18" fill="#C9A96E" opacity=".45"/>
+    <circle cx="98"  cy="97"  r="7" fill="#B89560" opacity=".4"/>
+    <circle cx="162" cy="97"  r="7" fill="#B89560" opacity=".4"/>
+    <circle cx="130" cy="134" r="7" fill="#B89560" opacity=".4"/>
+    <circle cx="182" cy="152" r="7" fill="#B89560" opacity=".4"/>
+    <circle cx="238" cy="152" r="7" fill="#B89560" opacity=".4"/>
+    <circle cx="210" cy="182" r="7" fill="#B89560" opacity=".4"/>
+  </g>
+
+  <g class="fpz fpz-active" id="fpz-C" onclick="fpSel('C')">
+    <rect x="298" y="33" width="379" height="200" fill="#F0ECE2"/>
+    <rect x="298" y="33" width="4" height="200" fill="#1C2B3A" opacity=".15"/>
+    <text x="310" y="220" font-size="8" font-weight="600" letter-spacing=".1em" fill="#1C2B3A" opacity=".4" font-family="sans-serif">CALIBRATION STATION</text>
+    <rect x="320" y="75" width="368" height="100" rx="3" fill="#1C2B3A"/>
+    <rect x="320" y="75" width="368" height="8" rx="2" fill="#E8500A"/>
+    <rect x="332" y="93" width="96" height="60" rx="2" fill="#2A3F54"/>
+    <rect x="444" y="93" width="96" height="60" rx="2" fill="#2A3F54"/>
+    <rect x="556" y="93" width="96" height="60" rx="2" fill="#2A3F54"/>
+    <rect x="342" y="99" width="76" height="34" rx="1" fill="#4A90B8" opacity=".65"/>
+    <rect x="454" y="99" width="76" height="34" rx="1" fill="#4A90B8" opacity=".65"/>
+    <rect x="566" y="99" width="76" height="34" rx="1" fill="#4A90B8" opacity=".65"/>
+    <text x="380" y="168" font-size="7" fill="white" opacity=".5" text-anchor="middle" font-family="sans-serif">STATION 1</text>
+    <text x="492" y="168" font-size="7" fill="white" opacity=".5" text-anchor="middle" font-family="sans-serif">STATION 2</text>
+    <text x="604" y="168" font-size="7" fill="white" opacity=".5" text-anchor="middle" font-family="sans-serif">STATION 3</text>
+    <circle cx="380" cy="188" r="11" fill="#1C2B3A" opacity=".2"/>
+    <circle cx="492" cy="188" r="11" fill="#1C2B3A" opacity=".2"/>
+    <circle cx="604" cy="188" r="11" fill="#1C2B3A" opacity=".2"/>
+  </g>
+
+  <g class="fpz" id="fpz-D" onclick="fpSel('D')">
+    <rect x="298" y="233" width="379" height="110" fill="#EAE6DB"/>
+    <rect x="298" y="233" width="4"   height="110" fill="#1C2B3A" opacity=".15"/>
+    <rect x="298" y="233" width="379" height="4"   fill="#1C2B3A" opacity=".15"/>
+    <text x="310" y="332" font-size="8" font-weight="600" letter-spacing=".1em" fill="#1C2B3A" opacity=".4" font-family="sans-serif">COLLECTION COUNTER</text>
+    <rect x="340" y="250" width="310" height="50" rx="2" fill="#1C2B3A" opacity=".7"/>
+    <rect x="340" y="250" width="310" height="6"  rx="1" fill="#E8500A"/>
+    <rect x="360" y="262" width="24" height="30" rx="1" fill="#F5F0E8"/>
+    <rect x="392" y="262" width="24" height="30" rx="1" fill="#F5F0E8"/>
+    <rect x="424" y="262" width="24" height="30" rx="1" fill="#F5F0E8"/>
+    <rect x="456" y="262" width="24" height="30" rx="1" fill="#F5F0E8"/>
+    <rect x="360" y="262" width="24" height="4" fill="#E8500A" opacity=".7"/>
+    <rect x="392" y="262" width="24" height="4" fill="#E8500A" opacity=".7"/>
+    <rect x="424" y="262" width="24" height="4" fill="#E8500A" opacity=".7"/>
+    <rect x="456" y="262" width="24" height="4" fill="#E8500A" opacity=".7"/>
+    <rect x="540" y="257" width="60" height="36" rx="2" fill="#2A3F54" opacity=".55"/>
+  </g>
+
+  <g class="fpz" id="fpz-A" onclick="fpSel('A')">
+    <rect x="43" y="343" width="634" height="104" fill="#E8E3D8"/>
+    <rect x="43" y="343" width="634" height="4" fill="#1C2B3A" opacity=".15"/>
+    <rect x="300" y="446" width="120" height="8" fill="#F5F1EA"/>
+    <path d="M300 447 Q300 420 322 420" fill="none" stroke="#1C2B3A" stroke-width="1.5" opacity=".3"/>
+    <rect x="308" y="428" width="104" height="16" rx="2" fill="#C9A96E" opacity=".3"/>
+    <rect x="130" y="362" width="4"  height="44" fill="#1C2B3A" opacity=".22"/>
+    <rect x="118" y="352" width="28" height="14" rx="1" fill="#1C2B3A" opacity=".22"/>
+    <text x="56" y="435" font-size="8" font-weight="600" letter-spacing=".12em" fill="#1C2B3A" opacity=".4" font-family="sans-serif">ENTRANCE</text>
+  </g>
+
+  <rect x="295" y="33"  width="5" height="420" fill="#1C2B3A" opacity=".2"/>
+  <rect x="298" y="230" width="379" height="5" fill="#1C2B3A" opacity=".2"/>
+  <rect x="43"  y="340" width="634" height="5" fill="#1C2B3A" opacity=".2"/>
+
+  <g id="fpdot-B" onclick="fpSel('B')" style="cursor:pointer">
+    <circle cx="170" cy="155" r="15" fill="white" stroke="#DDD9CE" stroke-width="1.5"/>
+    <text x="170" y="159" text-anchor="middle" font-size="11" font-weight="600" fill="#1C2B3A" font-family="sans-serif">B</text>
+  </g>
+  <g id="fpdot-C" onclick="fpSel('C')" style="cursor:pointer">
+    <circle cx="490" cy="58" r="15" fill="#E8500A"/>
+    <text x="490" y="62" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="sans-serif">C</text>
+  </g>
+  <g id="fpdot-D" onclick="fpSel('D')" style="cursor:pointer">
+    <circle cx="490" cy="288" r="15" fill="white" stroke="#DDD9CE" stroke-width="1.5"/>
+    <text x="490" y="292" text-anchor="middle" font-size="11" font-weight="600" fill="#1C2B3A" font-family="sans-serif">D</text>
+  </g>
+  <g id="fpdot-A" onclick="fpSel('A')" style="cursor:pointer">
+    <circle cx="360" cy="390" r="15" fill="white" stroke="#DDD9CE" stroke-width="1.5"/>
+    <text x="360" y="394" text-anchor="middle" font-size="11" font-weight="600" fill="#1C2B3A" font-family="sans-serif">A</text>
+  </g>
+
+  <text x="676" y="474" font-size="7.5" fill="#1C2B3A" opacity=".3" text-anchor="end" font-family="sans-serif">STAy &amp; PLAy Studio · Mission St · ~3,200 sq ft</text>
+</svg>
+
+<div class="fp-panel" id="fp-panel">
+  <div class="fp-panel-inner">
+    <p class="fp-tag"   id="fp-tag"></p>
+    <div>
+      <p class="fp-title" id="fp-title"></p>
+      <p class="fp-desc"  id="fp-desc"></p>
+      <p class="fp-shift" id="fp-shift"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ↓ store concept URL을 GitHub Pages 주소로 바꾸세요 -->
+<button class="fp-cta" onclick="window.open('YOUR_GITHUB_PAGES_URL/staples_store_concept.html','_blank')">
+  Explore full store concept →
+</button>
+
+<p class="fp-hint">Click each zone · A = Entrance · B = Focus Zone · C = Calibration Station · D = Collection Counter</p>
+
+<script>
+const fpData = {
+  A:{ tag:'Zone A · Entrance',            title:'First impression',             desc:'Warm cream walls. Serif wayfinding. QR prompt links to the app. Staff greet returning customers by name.',                                              shift:'Curious but unsure → Guided' },
+  B:{ tag:'Zone B · Focus Zone',          title:'Stay as long as you need',     desc:'Oak tables, pendant lighting, power at every seat. Café-adjacent workspace — the kind of table you sit at with a project.',                           shift:'Overwhelmed → Comfortable' },
+  C:{ tag:'Zone C · Calibration Station', title:'The centrepiece',              desc:'Three stations. Navy body, orange counter edge. Files pre-loaded from your Drawer before you sit down. Screen colour vs print colour, side by side.', shift:'Frustrated → Confident' },
+  D:{ tag:'Zone D · Collection Counter',  title:'A session, not a transaction', desc:'Kit bags printed with your project name. Calibration Card records adjustment values. Studio Receipt saves settings for next time.',                   shift:'Exit neutral → Curious about next visit' }
+};
+const panel = document.getElementById('fp-panel');
+
+function fpSel(k) {
+  const z = fpData[k];
+  document.getElementById('fp-tag').textContent   = z.tag;
+  document.getElementById('fp-title').textContent = z.title;
+  document.getElementById('fp-desc').textContent  = z.desc;
+  document.getElementById('fp-shift').textContent = z.shift;
+  panel.classList.add('open');
+  ['A','B','C','D'].forEach(id => {
+    const area = document.getElementById('fpz-' + id);
+    const dot  = document.getElementById('fpdot-' + id);
+    if (area) area.classList.toggle('fpz-active', id === k);
+    if (dot) {
+      const c = dot.querySelector('circle'), t = dot.querySelector('text');
+      if (id === k) { c.setAttribute('fill','#E8500A'); c.removeAttribute('stroke'); t.setAttribute('fill','white'); }
+      else { c.setAttribute('fill','white'); c.setAttribute('stroke','#DDD9CE'); c.setAttribute('stroke-width','1.5'); t.setAttribute('fill','#1C2B3A'); }
+    }
+  });
+}
+fpSel('C');
+</script>
+</body>
+</html>
