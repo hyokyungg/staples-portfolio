@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maya's Journey — STAy & PLAy Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  background: #151515;
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.wrap {
+  padding: 56px 48px 64px;
+  min-width: 1080px;
+}
+
+/* ── TIMELINE ── */
+.timeline-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+/* connecting line behind dots */
+.timeline-row::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: calc(100% / 14);
+  right: calc(100% / 14);
+  height: 1px;
+  background: #333;
+  z-index: 0;
+}
+
+.t-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.t-phase {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #555;
+  height: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.t-phase.bridge { color: #E8500A; }
+.t-phase.physical { color: #6B8F6B; }
+
+.t-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #2A2A2A;
+  border: 1px solid #3A3A3A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: #888;
+}
+
+.t-dot.bridge {
+  background: #E8500A;
+  border-color: #E8500A;
+  color: white;
+}
+
+.t-dot.physical {
+  background: #2A3A2A;
+  border-color: #4A6A4A;
+  color: #6B9B6B;
+}
+
+/* ── SCREENS ROW ── */
+.screens-row {
+  display: flex;
+  gap: 0;
+  align-items: flex-end;
+  margin-bottom: 28px;
+}
+
+.screen-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 0 6px;
+}
+
+.screen-img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  display: block;
+  border-radius: 24px;
+  /* subtle shadow only */
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,.5));
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.screen-img:hover {
+  transform: translateY(-4px);
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,.6));
+}
+
+.screen-item.bridge .screen-img {
+  max-width: 168px;
+  filter: drop-shadow(0 8px 28px rgba(232,80,10,.25));
+}
+
+.screen-item.bridge .screen-img:hover {
+  filter: drop-shadow(0 16px 36px rgba(232,80,10,.4));
+}
+
+/* ── LABELS ROW ── */
+.labels-row {
+  display: flex;
+  gap: 0;
+}
+
+.label-item {
+  flex: 1;
+  padding: 0 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #CCC;
+  text-align: center;
+}
+
+.label-title.bridge { color: #E8500A; }
+.label-title.physical { color: #7AAA7A; }
+
+.label-desc {
+  font-size: 11px;
+  font-weight: 300;
+  color: #555;
+  text-align: center;
+  line-height: 1.5;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- TIMELINE -->
+  <div class="timeline-row">
+    <div class="t-step">
+      <p class="t-phase">Digital</p>
+      <div class="t-dot">1</div>
+    </div>
+    <div class="t-step">
+      <p class="t-phase">Digital</p>
+      <div class="t-dot">2</div>
+    </div>
+    <div class="t-step">
+      <p class="t-phase bridge">Bridge</p>
+      <div class="t-dot bridge">3</div>
+    </div>
+    <div class="t-step">
+      <p class="t-phase bridge">Bridge</p>
+      <div class="t-dot bridge">4</div>
+    </div>
+    <div class="t-step">
+      <p class="t-phase physical">Physical</p>
+      <div class="t-dot physical">5</div>
+    </div>
+    <div class="t-step">
+      <p class="t-phase physical">Physical</p>
+      <div class="t-dot physical">6</div>
+    </div>
+    <div class="t-step">
+      <p class="t-phase physical">Physical</p>
+      <div class="t-dot physical">7</div>
+    </div>
+  </div>
+
+  <!-- SCREENS -->
+  <div class="screens-row">
+    <div class="screen-item">
+      <img src="screen_1_dashboard.png" alt="Dashboard" class="screen-img">
+    </div>
+    <div class="screen-item">
+      <img src="screen_2_buildkit.png" alt="Build Kit" class="screen-img">
+    </div>
+    <div class="screen-item bridge">
+      <img src="screen_3_synctostore.png" alt="Sync to Store" class="screen-img">
+    </div>
+    <div class="screen-item bridge">
+      <img src="screen_4_readyalert.png" alt="Ready Alert" class="screen-img">
+    </div>
+    <div class="screen-item">
+      <img src="screen_5_arrivestudio.png" alt="Arrive at Studio" class="screen-img">
+    </div>
+    <div class="screen-item">
+      <img src="screen_6_calibration.png" alt="Calibration" class="screen-img">
+    </div>
+    <div class="screen-item">
+      <img src="screen_7_confirmed.png" alt="Confirmed" class="screen-img">
+    </div>
+  </div>
+
+  <!-- LABELS -->
+  <div class="labels-row">
+    <div class="label-item">
+      <p class="label-title">Dashboard</p>
+      <p class="label-desc">Active project.<br>Store nearby.</p>
+    </div>
+    <div class="label-item">
+      <p class="label-title">Build Kit</p>
+      <p class="label-desc">Smart defaults.<br>Built before you leave.</p>
+    </div>
+    <div class="label-item">
+      <p class="label-title bridge">Sync to Store</p>
+      <p class="label-desc">One tap.<br>Studio is notified.</p>
+    </div>
+    <div class="label-item">
+      <p class="label-title bridge">Ready Alert</p>
+      <p class="label-desc">Kit ready.<br>Leave home confident.</p>
+    </div>
+    <div class="label-item">
+      <p class="label-title physical">Arrive at Studio</p>
+      <p class="label-desc">Named welcome.<br>Kit waiting.</p>
+    </div>
+    <div class="label-item">
+      <p class="label-title physical">Calibration Station</p>
+      <p class="label-desc">Screen vs print,<br>side by side.</p>
+    </div>
+    <div class="label-item">
+      <p class="label-title physical">Confidence Confirmed</p>
+      <p class="label-desc">Calibrated.<br>Saved for next time.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
